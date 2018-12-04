@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @Author little_eight
- * @Date 2018/12/3
+ * @author little_eight
+ * @date 2018/12/3
  */
 @RestController
 public class HelloController {

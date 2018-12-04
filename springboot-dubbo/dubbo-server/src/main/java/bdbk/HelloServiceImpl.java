@@ -4,8 +4,8 @@ import com.alibaba.dubbo.config.annotation.Service;
 import org.springframework.stereotype.Component;
 
 /**
- * @Author little_eight
- * @Date 2018/12/3
+ * @author little_eight
+ * @date 2018/12/3
  */
 @Component
 @Service
