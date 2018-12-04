@@ -8,5 +8,10 @@
     <artifactId>dubbo-server</artifactId>
     <version>1.0.0</version>
 
+    <parent>
+        <groupId>bdbk</groupId>
+        <artifactId>springboot-dubbo</artifactId>
+        <version>1.0.0</version>
+    </parent>
 
 </project>
