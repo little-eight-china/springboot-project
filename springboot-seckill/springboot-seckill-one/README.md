@@ -12,9 +12,9 @@
             ├─controller 控制类
             ├─dao 数据库类
             ├─domain 实体类
-            ├─ service 逻辑类
-            ├─ util 工具类
-            ├─ validator 校验类
+            ├─service 逻辑类
+            ├─util 工具类
+            ├─validator 校验类
             ├─vo 前端vo
 ```
 
