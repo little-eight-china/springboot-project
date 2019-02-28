@@ -66,6 +66,12 @@
             <optional>true</optional>
             <scope>true</scope>
         </dependency>
+        <!--msgpack-->
+        <dependency>
+        <groupId>org.msgpack</groupId>
+        <artifactId>msgpack-core</artifactId>
+        <version>0.8.13</version>
+    </dependency>
     </dependencies>
 
     <build>
