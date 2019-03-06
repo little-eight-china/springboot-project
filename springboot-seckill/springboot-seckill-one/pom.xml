@@ -8,7 +8,7 @@
         <version>2.1.1.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>babk</groupId>
+    <groupId>bdbk</groupId>
     <artifactId>springboot-seckill-one</artifactId>
     <version>1.0.0</version>
     <name>springboot-seckill-one</name>
