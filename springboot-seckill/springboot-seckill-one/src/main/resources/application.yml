@@ -36,6 +36,18 @@ spring:
     restart:
       enabled: true
 
+  # redis
+  redis:
+    database: 0
+    host: localhost
+    port: 6379
+    password:
+    jedis:
+      pool:
+        max-active: 8
+        min-idle: 0
+        max-wait: 1000
+    timeout: 1000
 # mybatis
 mybatis:
   type-aliases-package: bdbk.seckill.domain
