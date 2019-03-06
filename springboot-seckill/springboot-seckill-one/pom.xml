@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>babk</groupId>
-    <artifactId>springboot-seckill</artifactId>
+    <artifactId>springboot-seckill-one</artifactId>
     <version>1.0.0</version>
-    <name>springboot-seckill</name>
+    <name>springboot-seckill-one</name>
     <description>秒杀系统</description>
 
     <properties>

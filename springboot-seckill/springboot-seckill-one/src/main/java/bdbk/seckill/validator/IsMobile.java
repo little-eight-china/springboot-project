@@ -1,4 +1,4 @@
-package babk.seckill.validator;
+package bdbk.seckill.validator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

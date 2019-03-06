@@ -1,11 +1,11 @@
-package babk.seckill.service;
+package bdbk.seckill.service;
 
-import babk.seckill.constant.CodeMsg;
-import babk.seckill.dao.SeckillUserDao;
-import babk.seckill.domain.SeckillUser;
-import babk.seckill.util.MD5Util;
-import babk.seckill.vo.LoginVo;
-import babk.seckill.vo.ReturnDataVo;
+import bdbk.seckill.constant.CodeMsg;
+import bdbk.seckill.dao.SeckillUserDao;
+import bdbk.seckill.domain.SeckillUser;
+import bdbk.seckill.util.MD5Util;
+import bdbk.seckill.vo.LoginVo;
+import bdbk.seckill.vo.ReturnDataVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,5 +36,4 @@ public class SeckillUserService {
 		}
 		return ReturnDataVo.success();
 	}
-
 }

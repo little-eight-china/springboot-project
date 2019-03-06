@@ -1,7 +1,5 @@
-package babk.seckill.vo;
+package bdbk.seckill.vo;
 
-
-import static babk.seckill.vo.ReturnDataVo.*;
 
 /**
  * 用于作为返回给前端的vo类。
@@ -12,7 +10,7 @@ public final class ResponseDataVo<T> {
     /**
      * 状态
      */
-    private String state = UNKOWN;
+    private String state = ReturnDataVo.UNKOWN;
 
     /**
      * 信息。
@@ -45,7 +43,7 @@ public final class ResponseDataVo<T> {
      *
      */
     public static <T> ResponseDataVo<T> success() {
-        return new ResponseDataVo<T>(SUCCESS, null, null, null);
+        return new ResponseDataVo<T>(ReturnDataVo.SUCCESS, null, null, null);
     }
 
     /**
@@ -53,7 +51,7 @@ public final class ResponseDataVo<T> {
      *
      */
     public static <T> ResponseDataVo<T> success(T t) {
-        return new ResponseDataVo<T>(SUCCESS, null, null, t);
+        return new ResponseDataVo<T>(ReturnDataVo.SUCCESS, null, null, t);
     }
 
     /**
@@ -61,7 +59,7 @@ public final class ResponseDataVo<T> {
      *
      */
     public static <T> ResponseDataVo<T> success(T t, String msg) {
-        return new ResponseDataVo<T>(SUCCESS, null, msg, t);
+        return new ResponseDataVo<T>(ReturnDataVo.SUCCESS, null, msg, t);
     }
 
 
@@ -70,7 +68,7 @@ public final class ResponseDataVo<T> {
      *
      */
     public static <T> ResponseDataVo<T> warn() {
-        return new ResponseDataVo<T>(WARN, null, null, null);
+        return new ResponseDataVo<T>(ReturnDataVo.WARN, null, null, null);
     }
 
     /**
@@ -78,7 +76,7 @@ public final class ResponseDataVo<T> {
      *
      */
     public static <T> ResponseDataVo<T> warn(T t) {
-        return new ResponseDataVo<T>(WARN, null, null, t);
+        return new ResponseDataVo<T>(ReturnDataVo.WARN, null, null, t);
     }
 
     /**
@@ -86,7 +84,7 @@ public final class ResponseDataVo<T> {
      *
      */
     public static <T> ResponseDataVo<T> warn(T t, String msg) {
-        return new ResponseDataVo<T>(WARN, null, msg, t);
+        return new ResponseDataVo<T>(ReturnDataVo.WARN, null, msg, t);
     }
 
     /**
@@ -94,7 +92,7 @@ public final class ResponseDataVo<T> {
      *
      */
     public static <T> ResponseDataVo<T> error(String msg) {
-        return new ResponseDataVo<T>(ERROR, null, msg, null);
+        return new ResponseDataVo<T>(ReturnDataVo.ERROR, null, msg, null);
     }
 
     /**
@@ -103,7 +101,7 @@ public final class ResponseDataVo<T> {
      *
      */
     public static <T> ResponseDataVo<T> errorCode(String code, String msg) {
-        return new ResponseDataVo<T>(ERROR, code, msg, null);
+        return new ResponseDataVo<T>(ReturnDataVo.ERROR, code, msg, null);
     }
 
     /**
@@ -111,7 +109,7 @@ public final class ResponseDataVo<T> {
      *
      */
     public static <T> ResponseDataVo<T> error(T t, String msg) {
-        return new ResponseDataVo<T>(ERROR, null, msg, t);
+        return new ResponseDataVo<T>(ReturnDataVo.ERROR, null, msg, t);
     }
 
     /**
@@ -119,7 +117,7 @@ public final class ResponseDataVo<T> {
      *
      */
     public boolean isSuccess() {
-        return !WARN.equals(this.state);
+        return !ReturnDataVo.WARN.equals(this.state);
     }
 
     /**

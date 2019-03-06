@@ -1,4 +1,4 @@
-package babk.seckill.domain;
+package bdbk.seckill.domain;
 
 import java.util.Date;
 

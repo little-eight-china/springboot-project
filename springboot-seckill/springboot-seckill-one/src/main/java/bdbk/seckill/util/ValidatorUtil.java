@@ -1,4 +1,4 @@
-package babk.seckill.util;
+package bdbk.seckill.util;
 
 import com.alibaba.druid.util.StringUtils;
 

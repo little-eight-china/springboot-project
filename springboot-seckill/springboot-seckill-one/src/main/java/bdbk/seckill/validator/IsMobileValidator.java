@@ -1,7 +1,7 @@
-package babk.seckill.validator;
+package bdbk.seckill.validator;
 
 
-import babk.seckill.util.ValidatorUtil;
+import bdbk.seckill.util.ValidatorUtil;
 import com.alibaba.druid.util.StringUtils;
 
 import javax.validation.ConstraintValidator;

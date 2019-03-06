@@ -1,4 +1,4 @@
-package babk.seckill.constant;
+package bdbk.seckill.constant;
 
 public enum  CodeMsg {
 	//通用的错误码

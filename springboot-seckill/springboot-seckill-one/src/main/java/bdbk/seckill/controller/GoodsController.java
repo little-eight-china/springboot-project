@@ -1,4 +1,4 @@
-package babk.seckill.controller;
+package bdbk.seckill.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

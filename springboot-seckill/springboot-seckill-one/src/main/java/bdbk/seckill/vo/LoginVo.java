@@ -1,6 +1,6 @@
-package babk.seckill.vo;
+package bdbk.seckill.vo;
 
-import babk.seckill.validator.IsMobile;
+import bdbk.seckill.validator.IsMobile;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotNull;

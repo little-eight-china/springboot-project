@@ -1,4 +1,4 @@
-package babk.seckill.vo;
+package bdbk.seckill.vo;
 
 /**
  * 执行返回结果。

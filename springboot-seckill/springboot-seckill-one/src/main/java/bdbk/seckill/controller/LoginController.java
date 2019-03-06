@@ -1,8 +1,8 @@
-package babk.seckill.controller;
+package bdbk.seckill.controller;
 
-import babk.seckill.service.SeckillUserService;
-import babk.seckill.vo.LoginVo;
-import babk.seckill.vo.ReturnDataVo;
+import bdbk.seckill.service.SeckillUserService;
+import bdbk.seckill.vo.LoginVo;
+import bdbk.seckill.vo.ReturnDataVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
