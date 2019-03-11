@@ -12,13 +12,13 @@ import java.util.List;
 @Mapper
 public interface GoodsDao {
 	
-	@Select("select g.*,mg.stock_count, mg.start_date, mg.end_date,mg.miaosha_price from sk_goods mg left join goods g on mg.goods_id = g.id")
+	@Select("select b.*,a.stock, a.start_date, a.end_date,a.seckill_price from seckill_goods a left join goods b on a.goods_id = b.id")
 	public List<GoodsVo> listGoodsVo();
 
-	@Select("select g.*,mg.stock_count, mg.start_date, mg.end_date,mg.miaosha_price from sk_goods mg left join goods g on mg.goods_id = g.id where g.id = #{goodsId}")
+	@Select("select b.*,a.stock, a.start_date, a.end_date,a.seckill_price from seckill_goods a left join goods b on a.goods_id = b.id where b.id = #{goodsId}")
 	public GoodsVo getGoodsVoByGoodsId(@Param("goodsId") long goodsId);
 
-	@Update("update sk_goods set stock_count = stock_count - 1 where goods_id = #{goodsId}")
+	@Update("update seckill_goods set stock = stock - 1 where goods_id = #{goodsId}")
 	public int reduceStock(SeckillGoods g);
 	
 }

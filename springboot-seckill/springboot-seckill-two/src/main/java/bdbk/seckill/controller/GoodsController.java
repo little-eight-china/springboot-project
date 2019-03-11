@@ -24,7 +24,7 @@ public class GoodsController {
         //查询商品列表
         List<GoodsVo> goodsList = goodsService.listGoodsVo();
         model.addAttribute("goodsList", goodsList);
-        return "goods_list";
+        return "goodsList";
     }
 
     @RequestMapping("/detail/{goodsId}")
@@ -51,9 +51,9 @@ public class GoodsController {
             miaoshaStatus = 1;
             remainSeconds = 0;
         }
-        model.addAttribute("miaoshaStatus", miaoshaStatus);
+        model.addAttribute("status", miaoshaStatus);
         model.addAttribute("remainSeconds", remainSeconds);
-        return "goods_detail";
+        return "goodsDetail";
     }
     
 }

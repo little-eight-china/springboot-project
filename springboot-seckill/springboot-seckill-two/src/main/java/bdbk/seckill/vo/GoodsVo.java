@@ -6,16 +6,9 @@ import bdbk.seckill.domain.Goods;
 import java.util.Date;
 
 public class GoodsVo extends Goods {
-	private Double miaoshaPrice;
-	private Integer stockCount;
+	private Double seckillPrice;
 	private Date startDate;
 	private Date endDate;
-	public Integer getStockCount() {
-		return stockCount;
-	}
-	public void setStockCount(Integer stockCount) {
-		this.stockCount = stockCount;
-	}
 	public Date getStartDate() {
 		return startDate;
 	}
@@ -28,10 +21,12 @@ public class GoodsVo extends Goods {
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
-	public Double getMiaoshaPrice() {
-		return miaoshaPrice;
+
+	public Double getSeckillPrice() {
+		return seckillPrice;
 	}
-	public void setMiaoshaPrice(Double miaoshaPrice) {
-		this.miaoshaPrice = miaoshaPrice;
+
+	public void setSeckillPrice(Double seckillPrice) {
+		this.seckillPrice = seckillPrice;
 	}
 }

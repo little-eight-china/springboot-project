@@ -2,41 +2,41 @@ package bdbk.seckill.domain;
 
 public class Goods {
 	private Long id;
-	private String goodsName;
-	private String goodsTitle;
-	private String goodsImg;
-	private String goodsDetail;
+	private String name;
+	private String title;
+	private String img;
+	private String detail;
 	private Double goodsPrice;
-	private Integer goodsStock;
+	private Integer stock;
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getGoodsName() {
-		return goodsName;
+	public String getName() {
+		return name;
 	}
-	public void setGoodsName(String goodsName) {
-		this.goodsName = goodsName;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public String getGoodsTitle() {
-		return goodsTitle;
+	public String getTitle() {
+		return title;
 	}
-	public void setGoodsTitle(String goodsTitle) {
-		this.goodsTitle = goodsTitle;
+	public void setTitle(String title) {
+		this.title = title;
 	}
-	public String getGoodsImg() {
-		return goodsImg;
+	public String getImg() {
+		return img;
 	}
-	public void setGoodsImg(String goodsImg) {
-		this.goodsImg = goodsImg;
+	public void setImg(String img) {
+		this.img = img;
 	}
-	public String getGoodsDetail() {
-		return goodsDetail;
+	public String getDetail() {
+		return detail;
 	}
-	public void setGoodsDetail(String goodsDetail) {
-		this.goodsDetail = goodsDetail;
+	public void setDetail(String detail) {
+		this.detail = detail;
 	}
 	public Double getGoodsPrice() {
 		return goodsPrice;
@@ -44,10 +44,10 @@ public class Goods {
 	public void setGoodsPrice(Double goodsPrice) {
 		this.goodsPrice = goodsPrice;
 	}
-	public Integer getGoodsStock() {
-		return goodsStock;
+	public Integer getStock() {
+		return stock;
 	}
-	public void setGoodsStock(Integer goodsStock) {
-		this.goodsStock = goodsStock;
+	public void setStock(Integer stock) {
+		this.stock = stock;
 	}
 }

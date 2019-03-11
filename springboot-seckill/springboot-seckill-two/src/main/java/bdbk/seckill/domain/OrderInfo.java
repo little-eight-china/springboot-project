@@ -7,9 +7,9 @@ public class OrderInfo {
 	private Long userId;
 	private Long goodsId;
 	private Long  deliveryAddrId;
-	private String goodsName;
+	private String name;
 	private Integer goodsCount;
-	private Double goodsPrice;
+	private Double price;
 	private Integer orderChannel;
 	private Integer status;
 	private Date createDate;
@@ -38,11 +38,11 @@ public class OrderInfo {
 	public void setDeliveryAddrId(Long deliveryAddrId) {
 		this.deliveryAddrId = deliveryAddrId;
 	}
-	public String getGoodsName() {
-		return goodsName;
+	public String getName() {
+		return name;
 	}
-	public void setGoodsName(String goodsName) {
-		this.goodsName = goodsName;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public Integer getGoodsCount() {
 		return goodsCount;
@@ -50,11 +50,11 @@ public class OrderInfo {
 	public void setGoodsCount(Integer goodsCount) {
 		this.goodsCount = goodsCount;
 	}
-	public Double getGoodsPrice() {
-		return goodsPrice;
+	public Double getPrice() {
+		return price;
 	}
-	public void setGoodsPrice(Double goodsPrice) {
-		this.goodsPrice = goodsPrice;
+	public void setPrice(Double price) {
+		this.price = price;
 	}
 	public Integer getOrderChannel() {
 		return orderChannel;
