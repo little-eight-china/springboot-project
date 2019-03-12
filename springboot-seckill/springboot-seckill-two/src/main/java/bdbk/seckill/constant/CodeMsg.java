@@ -11,7 +11,10 @@ public enum  CodeMsg {
 	MOBILE_EMPTY(500212,"手机号不能为空"),
 	MOBILE_ERROR(500213,"手机号不能为空"),
 	MOBILE_NOT_EXIST(500214, "手机号不存在"),
-	PASSWORD_ERROR(500215, "密码错误");
+	PASSWORD_ERROR(500215, "密码错误"),
+	//秒杀模块 5005XX
+	SECKILL_OVER(500500, "商品已经秒杀完毕"),
+	REPEATE_SECKILL(500501, "不能重复秒杀");
 
 	private int code;
 	private String msg;
