@@ -1,6 +1,6 @@
 package bdbk.seckill.domain;
 
-public class Order {
+public class UserOrder {
 	private Long id;
 	private Long userId;
 	private Long  orderId;

@@ -3,8 +3,26 @@
 <head>
     <title>秒杀失败</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script type="text/javascript">
+        onload = function() {
+            setInterval(go, 1000);
+        };
+        var x = 5; //利用了全局变量来执行
+        function go() {
+            x--;
+            if (x > 0) {
+                document.getElementById("countdown").innerHTML = x; //每次设置的x的值都不一样了。
+            } else {
+                location.href = '/goods/list';
+            }
+        }
+    </script>
 </head>
 <body>
-秒杀失败：<p th:text="${errmsg}"></p>
+    <div>
+        秒杀失败：<p th:text="${errmsg}"></p>
+        <span id="countdown" style="color: red;">5</span>
+        秒后回首页
+</div>
 </body>
 </html>

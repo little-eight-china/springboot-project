@@ -1,7 +1,7 @@
 package bdbk.seckill.controller;
 
 import bdbk.seckill.constant.CodeMsg;
-import bdbk.seckill.domain.Order;
+import bdbk.seckill.domain.UserOrder;
 import bdbk.seckill.domain.SeckillUser;
 import bdbk.seckill.service.GoodsService;
 import bdbk.seckill.service.OrderService;
@@ -45,9 +45,9 @@ public class SeckillController {
 		}
 
 		//判断是否已经秒杀到了
-		Order order = orderService.getOrderByUserIdGoodsId(user.getId(), goodsId);
-		if(order != null) {
-			model.addAttribute("errmsg", CodeMsg.REPEATE_SECKILL);
+		UserOrder userOrder = orderService.getOrderByUserIdGoodsId(user.getId(), goodsId);
+		if(userOrder != null) {
+			model.addAttribute("errmsg", CodeMsg.REPEATE_SECKILL.getMsg());
 			return "seckillFail";
 		}
 

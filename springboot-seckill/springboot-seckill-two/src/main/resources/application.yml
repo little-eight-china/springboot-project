@@ -35,6 +35,10 @@ spring:
   devtools:
     restart:
       enabled: true
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password:
 
 # mybatis
 mybatis:
@@ -44,5 +48,4 @@ mybatis:
     default-fetch-size: 100
     default-statement-timeout: 3000
   mapperLocations: classpath:bdbk/seckill/dao/*.xml
-
 

@@ -1,7 +1,7 @@
 package bdbk.seckill.service;
 
 import bdbk.seckill.dao.OrderDao;
-import bdbk.seckill.domain.Order;
+import bdbk.seckill.domain.UserOrder;
 import bdbk.seckill.domain.OrderInfo;
 import bdbk.seckill.domain.SeckillUser;
 import bdbk.seckill.vo.GoodsVo;
@@ -17,7 +17,7 @@ public class OrderService {
 	@Autowired
 	OrderDao orderDao;
 	
-	public Order getOrderByUserIdGoodsId(long userId, long goodsId) {
+	public UserOrder getOrderByUserIdGoodsId(long userId, long goodsId) {
 		return orderDao.getOrderByUserIdGoodsId(userId, goodsId);
 	}
 
@@ -34,11 +34,11 @@ public class OrderService {
 		orderInfo.setStatus(0);
 		orderInfo.setUserId(user.getId());
 		long orderId = orderDao.insert(orderInfo);
-		Order order = new Order();
-		order.setGoodsId(goods.getId());
-		order.setOrderId(orderId);
-		order.setUserId(user.getId());
-		orderDao.insertOrder(order);
+		UserOrder userOrder = new UserOrder();
+		userOrder.setGoodsId(goods.getId());
+		userOrder.setOrderId(orderId);
+		userOrder.setUserId(user.getId());
+		orderDao.insertOrder(userOrder);
 		return orderInfo;
 	}
 	

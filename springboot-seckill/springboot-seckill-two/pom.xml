@@ -65,7 +65,12 @@
 			<optional>true</optional>
 			<scope>true</scope>
 		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.8.1</version>
+        </dependency>
+    </dependencies>
 
 	<build>
 		<plugins>
