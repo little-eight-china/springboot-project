@@ -33,7 +33,7 @@ public class SeckillController {
                        @RequestParam("goodsId")long goodsId) {
     	model.addAttribute("user", user);
     	// 如果为空跳登录
-    	if(user == null) {
+    	if(user == null || user.getId() == null) {
     		return "login";
     	}
 		//判断库存

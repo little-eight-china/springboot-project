@@ -1,3 +1,4 @@
+
 spring:
   #thymeleaf
   thymeleaf:
@@ -48,4 +49,6 @@ mybatis:
     default-fetch-size: 100
     default-statement-timeout: 3000
   mapperLocations: classpath:bdbk/seckill/dao/*.xml
+server:
+  port: 8081
 

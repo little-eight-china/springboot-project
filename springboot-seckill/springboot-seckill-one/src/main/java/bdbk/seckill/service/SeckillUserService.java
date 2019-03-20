@@ -33,7 +33,7 @@ public class SeckillUserService {
 		String formPass = loginVo.getPassword();
 		//判断手机号是否存在
 		SeckillUser user = seckillUserDao.getByMobile(mobile);
-		if(user == null) {
+		if(user == null ) {
 			return ReturnDataVo.error(CodeMsg.MOBILE_NOT_EXIST.getMsg());
 		}
 		//验证密码
