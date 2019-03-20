@@ -16,9 +16,13 @@ public class OrderService {
 	
 	@Autowired
 	OrderDao orderDao;
-	
-	public UserOrder getOrderByUserIdGoodsId(long userId, long goodsId) {
-		return orderDao.getOrderByUserIdGoodsId(userId, goodsId);
+
+	public UserOrder getUserOrderByUserIdGoodsId(long userId, long goodsId) {
+		return orderDao.getUserOrderByUserIdGoodsId(userId, goodsId);
+	}
+
+	public OrderInfo getOrderInfoByUserIdGoodsId(long userId, long goodsId) {
+		return orderDao.getOrderInfoByUserIdGoodsId(userId, goodsId);
 	}
 
 	@Transactional
@@ -33,12 +37,12 @@ public class OrderService {
 		orderInfo.setOrderChannel(1);
 		orderInfo.setStatus(0);
 		orderInfo.setUserId(user.getId());
-		long orderId = orderDao.insert(orderInfo);
+		long orderId = orderDao.insertOrderInfo(orderInfo);
 		UserOrder userOrder = new UserOrder();
 		userOrder.setGoodsId(goods.getId());
 		userOrder.setOrderId(orderId);
 		userOrder.setUserId(user.getId());
-		orderDao.insertOrder(userOrder);
+		orderDao.insertUserOrder(userOrder);
 		return orderInfo;
 	}
 	

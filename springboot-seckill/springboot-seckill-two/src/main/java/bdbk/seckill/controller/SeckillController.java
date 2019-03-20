@@ -1,10 +1,12 @@
 package bdbk.seckill.controller;
 
 import bdbk.seckill.constant.CodeMsg;
+import bdbk.seckill.domain.OrderInfo;
 import bdbk.seckill.domain.UserOrder;
 import bdbk.seckill.domain.SeckillUser;
 import bdbk.seckill.service.GoodsService;
 import bdbk.seckill.service.OrderService;
+import bdbk.seckill.service.SeckillService;
 import bdbk.seckill.service.SeckillUserService;
 import bdbk.seckill.vo.GoodsVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,9 @@ public class SeckillController {
 
 	@Autowired
 	OrderService orderService;
+
+	@Autowired
+	SeckillService seckillService;
 	/**
 	 * 开始秒杀
 	 */
@@ -44,13 +49,20 @@ public class SeckillController {
 			return "seckillFail";
 		}
 
-		//判断是否已经秒杀到了
-		UserOrder userOrder = orderService.getOrderByUserIdGoodsId(user.getId(), goodsId);
+		//判断是否已经秒杀到了,直接跳转订单详情
+		// TODO 要修改先跳转到失败页面才行，不能直接跳订单详情
+		UserOrder userOrder = orderService.getUserOrderByUserIdGoodsId(user.getId(), goodsId);
 		if(userOrder != null) {
-			model.addAttribute("errmsg", CodeMsg.REPEATE_SECKILL.getMsg());
-			return "seckillFail";
+			OrderInfo orderInfo = seckillService.getOrderInfoByUserIdGoodsId(userOrder.getUserId(), userOrder.getGoodsId());
+			model.addAttribute("orderInfo", orderInfo);
+			model.addAttribute("goods", goods);
+			return "orderDetail";
 		}
 
+		//减库存 下订单 写入秒杀订单
+		OrderInfo orderInfo = seckillService.seckill(user, goods);
+		model.addAttribute("orderInfo", orderInfo);
+		model.addAttribute("goods", goods);
         return "orderDetail";
     }
 }
