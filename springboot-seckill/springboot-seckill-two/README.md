@@ -29,15 +29,15 @@
 ### 压测（jmeter）
 * 基本配置，压测地址是goods/list
 
-[!jmeter1](https://github.com/little-eight-china/image/blob/master/springboot-seckill/jmeter1.png?raw=true)
+![jmeter1](https://github.com/little-eight-china/image/blob/master/springboot-seckill/jmeter1.png?raw=true)
 
 * 当线程数为1000时，mysql就会报错，打开MYSQL安装目录打开MY.INI找到max_connections（在大约第93行）默认是100 一般设置到500～1000比较合适，重启mysql,这样1040错误就解决啦。
                        max_connections=1000
                        
-[!test1](https://github.com/little-eight-china/image/blob/master/springboot-seckill/test1.png?raw=true)
+![test1](https://github.com/little-eight-china/image/blob/master/springboot-seckill/test1.png?raw=true)
 
 * 1000并发时，还能有400多TPS,当设置到10000，由于机器本身的性能问题，导致只有200多TPS
 
-[!jmeter2](https://github.com/little-eight-china/image/blob/master/springboot-seckill/jmeter2.png?raw=true)
+![jmeter2](https://github.com/little-eight-china/image/blob/master/springboot-seckill/jmeter2.png?raw=true)
     
 
