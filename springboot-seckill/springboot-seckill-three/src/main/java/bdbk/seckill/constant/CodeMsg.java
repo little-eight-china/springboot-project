@@ -2,7 +2,9 @@ package bdbk.seckill.constant;
 
 public enum  CodeMsg {
 	//通用的错误码
-	SUCCESS(0,"success"),
+	SUCCESS(0,"请求成功"),
+	WARN(500001,"请求异常警告"),
+	ERROR(500002,"请求失败"),
 	SERVER_ERROR(500100,"服务端异常"),
 	BIND_ERROR(500100,"参数校验异常：%s"),
 	//登录模块 5002XX

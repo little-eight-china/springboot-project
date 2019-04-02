@@ -15,8 +15,6 @@
     <script type="text/javascript" th:src="@{/layer/layer.js}"></script>
     <!-- md5.js -->
     <script type="text/javascript" th:src="@{/js/md5.min.js}"></script>
-    <!-- common.js -->
-    <script type="text/javascript" th:src="@{/js/common.js}"></script>
 </head>
 <body>
 
@@ -30,7 +28,10 @@
             <td th:text="${goods.goodsPrice}"></td>
             <td th:text="${goods.seckillPrice}"></td>
             <td th:text="${goods.stock}"></td>
-            <td><a th:href="'/goods/detail/'+${goods.id}">详情</a></td>
+            <!--这是不静态化-->
+            <!--<td><a th:href="'/goods/detail/'+${goods.id}">详情</a></td>-->
+            <!--这是静态化-->
+            <td><a th:href="'/goodsDetail.htm?goodsId='+${goods.id}">详情</a></td>
         </tr>
     </table>
 </div>
