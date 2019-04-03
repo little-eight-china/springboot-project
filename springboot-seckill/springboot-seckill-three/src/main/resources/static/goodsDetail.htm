@@ -15,6 +15,8 @@
     <script type="text/javascript" src="/layer/layer.js"></script>
     <!-- md5.js -->
     <script type="text/javascript" src="/js/md5.min.js"></script>
+    <!-- common.js -->
+    <script type="text/javascript" src="/js/common.js"></script>
 </head>
 <body>
 
@@ -31,7 +33,7 @@
      </tr>  
      <tr>  
         <td>商品图片</td>  
-        <td colspan="3"><img  id="goodsImg" width="200" height="200" /></td>  
+        <td colspan="3"><img  id="img" width="200" height="200"  src=""/></td>
      </tr>
      <tr>  
         <td>秒杀开始时间</td>  
@@ -55,7 +57,7 @@
      </tr>
      <tr>  
         <td>库存数量</td>  
-        <td colspan="3"  id="stockCount"></td>  
+        <td colspan="3"  id="stock"></td>
      </tr>
   </table>
 </div>
@@ -66,8 +68,8 @@ $(function(){
     getDetail();
 });
 
+// 获取商品详情
 function getDetail(){
-    console.log('getDetail')
 	var goodsId = g_getQueryString("goodsId");
 	$.ajax({
 		url:"/htm/detail/"+goodsId,
@@ -84,32 +86,30 @@ function getDetail(){
 		}
 	});
 }
-
+// 中间过渡方法，填充页面数据
 function render(detail){
-    console.log('render')
-    var seckillStatus = detail.seckillStatus;
-    var  remainSeconds = detail.remainSeconds;
+    debugger
+    var remainSeconds = detail.remainSeconds;
     var goods = detail.goods;
     var user = detail.user;
     if(user){
         $("#userTip").hide();
     }
     $("#goodsName").text(goods.goodsName);
-    $("#goodsImg").attr("src", goods.goodsImg);
+    $("#img").attr("src", goods.img);
     $("#startTime").text(new Date(goods.startDate).format("yyyy-MM-dd hh:mm:ss"));
     $("#remainSeconds").val(remainSeconds);
     $("#goodsId").val(goods.id);
     $("#goodsPrice").text(goods.goodsPrice);
     $("#seckillPrice").text(goods.seckillPrice);
-    $("#stockCount").text(goods.stockCount);
+    $("#stock").text(goods.stock);
     countDown();
 }
-
+// 倒计时
 function countDown(){
-    console.log('countDown')
-	var remainSeconds = $("#remainSeconds").val();
+	var remainSeconds = $("#remainSeconds").val() - 0;
 	var timeout;
-    //秒杀还没开始，倒计时
+    // 秒杀还没开始，倒计时
 	if(remainSeconds > 0){
 		$("#buyButton").attr("disabled", true);
 	   $("#seckillTip").html("秒杀倒计时："+remainSeconds+"秒");
@@ -118,28 +118,29 @@ function countDown(){
 			$("#remainSeconds").val(remainSeconds - 1);
 			countDown();
 		},1000);
-	}else if(remainSeconds == 0){//秒杀进行中
+	// 秒杀进行中
+	}else if(remainSeconds === 0){
 		$("#buyButton").attr("disabled", false);
 		if(timeout){
 			clearTimeout(timeout);
 		}
 		$("#seckillTip").html("秒杀进行中");
-	}else{//秒杀已经结束
+    // 秒杀已经结束
+	}else{
 		$("#buyButton").attr("disabled", true);
 		$("#seckillTip").html("秒杀已经结束");
 	}
 }
-
+// 点击秒杀
 function startSeckill(){
-    console.log('startSeckill')
     $.ajax({
         url:"/htm/startSeckill",
         type:"POST",
         data:{
-            goodsId:$("#goodsId").val(),
+            goodsId:$("#goodsId").val()
         },
         success:function(data){
-            if(data.code == 0){
+            if(data.code === 0){
                 window.location.href="/orderDetail.htm?orderId="+data.data.id;
             }else{
                 layer.msg(data.msg);
@@ -149,17 +150,6 @@ function startSeckill(){
             layer.msg("客户端请求有误");
         }
     });
-
 }
-
-// 获取url参数
-function g_getQueryString(name) {
-    console.log('g_getQueryString')
-    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-    var r = window.location.search.substr(1).match(reg);
-    if(r !== null) return unescape(r[2]);
-    return null;
-}
-
 </script>
 </html>

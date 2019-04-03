@@ -28,7 +28,7 @@
      </tr>  
      <tr>  
         <td>商品图片</td>  
-        <td colspan="2"><img  id="goodsImg" width="200" height="200" /></td>  
+        <td colspan="2"><img id="img" width="200" height="200" src=""/></td>
      </tr>
       <tr>  
         <td>订单价格</td>  
@@ -59,11 +59,36 @@
 </body>
 </html>
 <script>
+$(function(){
+    getOrderDetail();
+});
+// 获取订单详情
+function getOrderDetail(){
+    var orderId = g_getQueryString("orderId");
+    $.ajax({
+        url:"/htm/detail",
+        type:"GET",
+        data:{
+            orderId:orderId
+        },
+        success:function(data){
+            if(data.code === 0){
+                render(data.data);
+            }else{
+                layer.msg(data.msg);
+            }
+        },
+        error:function(){
+            layer.msg("客户端请求有误");
+        }
+    });
+}
+// 中间过渡，填补页面信息
 function render(detail){
 	var goods = detail.goods;
 	var order = detail.order;
 	$("#goodsName").text(goods.goodsName);
-	$("#goodsImg").attr("src", goods.goodsImg);
+	$("#img").attr("src", goods.img);
 	$("#orderPrice").text(order.goodsPrice);
 	$("#createDate").text(new Date(order.createDate).format("yyyy-MM-dd hh:mm:ss"));
 	var status = "";
@@ -73,34 +98,5 @@ function render(detail){
 		status = "待发货";
 	}
 	$("#orderStatus").text(status);
-	
 }
-
-$(function(){
-	getOrderDetail();
-})
-
-function getOrderDetail(){
-	var orderId = g_getQueryString("orderId");
-	$.ajax({
-		url:"/htm/detail",
-		type:"GET",
-		data:{
-			orderId:orderId
-		},
-		success:function(data){
-			if(data.code === 0){
-				render(data.data);
-			}else{
-				layer.msg(data.msg);
-			}
-		},
-		error:function(){
-			layer.msg("客户端请求有误");
-		}
-	});
-}
-
-
-
 </script>
