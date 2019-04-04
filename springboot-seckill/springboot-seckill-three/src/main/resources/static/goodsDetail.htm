@@ -54,7 +54,7 @@
                     <span>库存数量：</span>
                     <span id="stock"></span>
                 </div>
-                <div class="info_feet2">
+                <div>
                     <button class="btn btn-primary btn-block" type="button" id="seckillButton"onclick="startSeckill()">立即秒杀</button>
                     <input type="hidden" name="goodsId"  id="goodsId" />
                 </div>
@@ -96,7 +96,7 @@ function render(detail){
     if(user){
         $("#userTip").text('欢迎您，'+user.nickname);
     } else {
-        $("#userTip").html('您还没有<a th:href=\"login">登录</a>，请登陆后再操作');
+        $("#userTip").html('您还没有'+'<a href="/login">登录</a>'+'，请登陆后再操作');
     }
     $("#goodsName").text(goods.name);
     $("#goodsTitle").text(goods.title);

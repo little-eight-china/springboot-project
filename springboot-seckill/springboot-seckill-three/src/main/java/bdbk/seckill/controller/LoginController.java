@@ -22,7 +22,12 @@ public class LoginController {
     private SeckillUserService userService;
 
     @RequestMapping("")
-    public String toLogin() {
+    public String toLogin1() {
+        return "login";
+    }
+
+    @RequestMapping("login")
+    public String toLogin2() {
         return "login";
     }
     
