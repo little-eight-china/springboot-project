@@ -3,7 +3,6 @@ package bdbk.seckill.controller.htm;
 import bdbk.seckill.constant.CodeMsg;
 import bdbk.seckill.domain.OrderInfo;
 import bdbk.seckill.domain.SeckillUser;
-import bdbk.seckill.domain.User;
 import bdbk.seckill.domain.UserOrder;
 import bdbk.seckill.service.GoodsService;
 import bdbk.seckill.service.OrderService;

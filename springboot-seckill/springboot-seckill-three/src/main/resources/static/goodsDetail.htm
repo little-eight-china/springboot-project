@@ -7,6 +7,8 @@
     <script type="text/javascript" src="/js/jquery.min.js"></script>
     <!-- bootstrap -->
     <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css" />
+    <!--详情通用css-->
+    <link rel="stylesheet" type="text/css" href="/css/detail.css"/>
     <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
     <!-- jquery-validator -->
     <script type="text/javascript" src="/jquery-validation/jquery.validate.min.js"></script>
@@ -19,48 +21,46 @@
     <script type="text/javascript" src="/js/common.js"></script>
 </head>
 <body>
-
-<div class="panel panel-default">
-  <div class="panel-heading">秒杀商品详情</div>
-  <div class="panel-body">
-  	<span id="userTip"> 您还没有登录，请登陆后再操作<br/></span>
-  	<span>没有收货地址的提示。。。</span>
-  </div>
-  <table class="table" id="goodslist">
-  	<tr>  
-        <td>商品名称</td>  
-        <td colspan="3" id="goodsName"></td> 
-     </tr>  
-     <tr>  
-        <td>商品图片</td>  
-        <td colspan="3"><img  id="img" width="200" height="200"  src=""/></td>
-     </tr>
-     <tr>  
-        <td>秒杀开始时间</td>  
-        <td id="startTime"></td>
-        <td >	
-        	<input type="hidden" id="remainSeconds" />
-        	<span id="seckillTip"></span>
-        </td>
-        <td>
-        	<button class="btn btn-primary btn-block" type="button" id="buyButton"onclick="startSeckill()">立即秒杀</button>
-        	<input type="hidden" name="goodsId"  id="goodsId" />
-        </td>
-     </tr>
-     <tr>  
-        <td>商品原价</td>  
-        <td colspan="3" id="goodsPrice"></td>  
-     </tr>
-      <tr>  
-        <td>秒杀价</td>  
-        <td colspan="3"  id="seckillPrice"></td>
-     </tr>
-     <tr>  
-        <td>库存数量</td>  
-        <td colspan="3"  id="stock"></td>
-     </tr>
-  </table>
-</div>
+    <div class="top">
+        <span id="userTip"></span>
+    </div>
+    <div class="main">
+        <div class="containers">
+            <div class="img">
+                <img id="img" width="560"/>
+            </div>
+            <div class="info">
+                <h2 id="goodsName"></h2>
+                <p class="title" id="goodsTitle"></p>
+                <p>
+                    <span class="info_price_new" id="seckillPrice"></span>
+                    <del><span class="info_price_old" id="goodsPrice"></span></del>
+                </p>
+                <div class="info_middle">
+                    <div>
+                        <span>秒杀开始时间</span>
+                        <p id="startDate"></p>
+                    </div>
+                    <div>
+                        <span>秒杀结束时间</span>
+                        <p id="endDate"></p>
+                    </div>
+                </div>
+                <div class="info_feet1">
+                    <input type="hidden" id="remainSeconds" />
+                    <span id="seckillTip"></span>
+                </div>
+                <div class="info_feet2">
+                    <span>库存数量：</span>
+                    <span id="stock"></span>
+                </div>
+                <div class="info_feet2">
+                    <button class="btn btn-primary btn-block" type="button" id="seckillButton"onclick="startSeckill()">立即秒杀</button>
+                    <input type="hidden" name="goodsId"  id="goodsId" />
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 <script>
 
@@ -92,17 +92,22 @@ function render(detail){
     var remainSeconds = detail.remainSeconds;
     var goods = detail.goods;
     var user = detail.user;
+    debugger
     if(user){
-        $("#userTip").hide();
+        $("#userTip").text('欢迎您，'+user.nickname);
+    } else {
+        $("#userTip").html('您还没有<a th:href=\"login">登录</a>，请登陆后再操作');
     }
-    $("#goodsName").text(goods.goodsName);
+    $("#goodsName").text(goods.name);
+    $("#goodsTitle").text(goods.title);
     $("#img").attr("src", goods.img);
-    $("#startTime").text(new Date(goods.startDate).format("yyyy-MM-dd hh:mm:ss"));
+    $("#startDate").text(new Date(goods.startDate).format("yyyy-MM-dd hh:mm:ss"));
+    $("#endDate").text(new Date(goods.endDate).format("yyyy-MM-dd hh:mm:ss"));
     $("#remainSeconds").val(remainSeconds);
     $("#goodsId").val(goods.id);
-    $("#goodsPrice").text(goods.goodsPrice);
-    $("#seckillPrice").text(goods.seckillPrice);
-    $("#stock").text(goods.stock);
+    $("#goodsPrice").text(goods.goodsPrice+' 元');
+    $("#seckillPrice").text(goods.seckillPrice+' 元');
+    $("#stock").text(goods.stock+' 个');
     countDown();
 }
 // 倒计时
@@ -111,7 +116,7 @@ function countDown(){
 	var timeout;
     // 秒杀还没开始，倒计时
 	if(remainSeconds > 0){
-		$("#buyButton").attr("disabled", true);
+		$("#seckillButton").attr("disabled", true);
 	   $("#seckillTip").html("秒杀倒计时："+remainSeconds+"秒");
 		timeout = setTimeout(function(){
 			$("#countDown").text(remainSeconds - 1);
@@ -120,14 +125,14 @@ function countDown(){
 		},1000);
 	// 秒杀进行中
 	}else if(remainSeconds === 0){
-		$("#buyButton").attr("disabled", false);
+		$("#seckillButton").attr("disabled", false);
 		if(timeout){
 			clearTimeout(timeout);
 		}
 		$("#seckillTip").html("秒杀进行中");
     // 秒杀已经结束
 	}else{
-		$("#buyButton").attr("disabled", true);
+		$("#seckillButton").attr("disabled", true);
 		$("#seckillTip").html("秒杀已经结束");
 	}
 }

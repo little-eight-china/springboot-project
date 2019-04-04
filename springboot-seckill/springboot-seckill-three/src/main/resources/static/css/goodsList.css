@@ -1,0 +1,53 @@
+@charset "utf-8";
+*{
+    padding: 0;
+    margin: 0;
+}
+.main{
+    width: 100%;
+    min-width: 800px;
+}
+.main .title{
+    width: 100%;
+    height: 55px;
+    text-align: center;
+    line-height: 55px;
+}
+.middle{
+    width: 100%;
+    margin: 0 auto;
+
+}
+.middle .middle_info{
+    width: 260px;
+    height:auto;
+    float: left;
+    margin: 20px;
+}
+.middle .middle_info h4{
+    text-align: center;
+}
+.middle .middle_info .middle_info_seckill_price{
+    width: 100%;
+    font-size: 12px;
+
+}
+.middle .middle_info .middle_info_seckill_price p {
+    text-align: center;
+    overflow: hidden;
+    color: #b0b0b0;
+    white-space:nowrap;
+    word-break:keep-all;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+.middle .middle_info .middle_info_seckill_price p .new_price{
+    color: #ff6700;
+}
+.middle .middle_info .middle_info_seckill_price p .old_price{
+    color: #b0b0b0;
+}
+.middle_info_seckill_price button{
+    width: 100%;
+    border: #9b11cc solid 1px;
+}

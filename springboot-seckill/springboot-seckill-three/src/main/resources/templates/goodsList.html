@@ -7,6 +7,8 @@
     <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
     <!-- bootstrap -->
     <link rel="stylesheet" type="text/css" th:href="@{/bootstrap/css/bootstrap.min.css}" />
+    <!--商品列表css-->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/goodsList.css}"/>
     <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
     <!-- jquery-validator -->
     <script type="text/javascript" th:src="@{/jquery-validation/jquery.validate.min.js}"></script>
@@ -17,23 +19,28 @@
     <script type="text/javascript" th:src="@{/js/md5.min.js}"></script>
 </head>
 <body>
-
-<div class="panel panel-default">
-    <div class="panel-heading">秒杀商品列表</div>
-    <table class="table" id="goodslist">
-        <tr><td>商品名称</td><td>商品图片</td><td>商品原价</td><td>秒杀价</td><td>库存数量</td><td>详情</td></tr>
-        <tr  th:each="goods,goodsStat : ${goodsList}">
-            <td th:text="${goods.name}"></td>
-            <td ><img th:src="@{${goods.img}}" width="100" height="100" /></td>
-            <td th:text="${goods.goodsPrice}"></td>
-            <td th:text="${goods.seckillPrice}"></td>
-            <td th:text="${goods.stock}"></td>
-            <!--这是不静态化-->
-            <!--<td><a th:href="'/goods/detail/'+${goods.id}">详情</a></td>-->
-            <!--这是静态化-->
-            <td><a th:href="'/goodsDetail.htm?goodsId='+${goods.id}">详情</a></td>
-        </tr>
-    </table>
-</div>
+    <div class="main">
+        <div class="title"><h2>秒杀商品列表</h2></div>
+        <div class="middle">
+            <div class="middle_info" th:each="goods,goodsStat : ${goodsList}">
+                <h4 th:text="${goods.name}"></h4>
+                <img th:src="@{${goods.img}}" width="250"/>
+                <br/><br/>
+                <div class="middle_info_seckill_price">
+                    <p th:text="${goods.title}"></p>
+                    <p>
+                        <span class="new_price" th:text="${goods.seckillPrice}+'元  '"></span>
+                        <del><span class="old_price" th:text="${goods.goodsPrice}+'元'"></span></del>
+                    </p>
+                    <!--这是不静态化-->
+                    <!--<a th:href="'/goods/detail/'+${goods.id}">-->
+                    <!--这是静态化-->
+                    <a th:href="'/goodsDetail.htm?goodsId='+${goods.id}">
+                        <button class="btn btn-default" type="submit">进入详情页</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
