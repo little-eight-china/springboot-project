@@ -88,11 +88,9 @@ function getDetail(){
 }
 // 中间过渡方法，填充页面数据
 function render(detail){
-    debugger
     var remainSeconds = detail.remainSeconds;
     var goods = detail.goods;
     var user = detail.user;
-    debugger
     if(user){
         $("#userTip").text('欢迎您，'+user.nickname);
     } else {
@@ -146,7 +144,7 @@ function startSeckill(){
         },
         success:function(data){
             if(data.code === 0){
-                window.location.href="/orderDetail.htm?orderId="+data.data.id;
+                window.location.href="/htm/orderDetail.htm?userId="+data.data.userId + "&goodsId=" + data.data.goodsId;
             }else{
                 layer.msg(data.msg);
             }

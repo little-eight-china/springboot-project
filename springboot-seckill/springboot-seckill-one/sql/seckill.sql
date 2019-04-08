@@ -46,6 +46,8 @@ CREATE TABLE `order_info` (
   `goods_id` bigint(20) DEFAULT NULL,
   `delivery_addr_id` bigint(20) DEFAULT NULL,
   `name` varchar(30) DEFAULT NULL,
+  `img` varchar(64) DEFAULT NULL,
+  `title` varchar(64) DEFAULT NULL,
   `goods_count` int(11) DEFAULT NULL,
   `price` decimal(10,2) DEFAULT NULL,
   `order_channel` tinyint(4) DEFAULT NULL COMMENT '订单渠道，1在线，2android，3ios',

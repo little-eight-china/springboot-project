@@ -8,6 +8,8 @@ public class OrderInfo {
 	private Long goodsId;
 	private Long  deliveryAddrId;
 	private String name;
+	private String img;
+	private String title;
 	private Integer goodsCount;
 	private Double price;
 	private Integer orderChannel;
@@ -79,5 +81,21 @@ public class OrderInfo {
 	}
 	public void setPayDate(Date payDate) {
 		this.payDate = payDate;
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 }

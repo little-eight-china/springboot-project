@@ -33,6 +33,8 @@ public class OrderService {
 		orderInfo.setGoodsCount(1);
 		orderInfo.setGoodsId(goods.getId());
 		orderInfo.setName(goods.getName());
+		orderInfo.setImg(goods.getImg());
+		orderInfo.setTitle(goods.getTitle());
 		orderInfo.setPrice(goods.getSeckillPrice());
 		orderInfo.setOrderChannel(1);
 		orderInfo.setStatus(0);

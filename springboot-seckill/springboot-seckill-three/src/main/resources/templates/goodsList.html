@@ -33,10 +33,12 @@
                         <del><span class="old_price" th:text="${goods.goodsPrice}+'元'"></span></del>
                     </p>
                     <!--这是不静态化-->
-                    <!--<a th:href="'/goods/detail/'+${goods.id}">-->
+                    <a th:href="'/goods/detail/'+${goods.id}">
+                        <button class="btn btn-default" type="submit">进入详情页(这是不静态化页面)</button>
+                    </a>
                     <!--这是静态化-->
-                    <a th:href="'/goodsDetail.htm?goodsId='+${goods.id}">
-                        <button class="btn btn-default" type="submit">进入详情页</button>
+                    <a th:href="'/htm/goodsDetail.htm?goodsId='+${goods.id}">
+                        <button class="btn btn-default" type="submit">进入详情页(这是静态化页面)</button>
                     </a>
                 </div>
             </div>
