@@ -80,7 +80,7 @@ public class HtmController {
             return ResponseDataVo.error(CodeMsg.SESSION_ERROR.getMsg());
         }
         // 判断库存
-        GoodsVo goods = goodsService.getGoodsVoByGoodsId(goodsId);//10个商品，req1 req2
+        GoodsVo goods = goodsService.getGoodsVoByGoodsId(goodsId);
         int stock = goods.getStock();
         if(stock <= 0) {
             return ResponseDataVo.error(CodeMsg.SECKILL_OVER.getMsg());

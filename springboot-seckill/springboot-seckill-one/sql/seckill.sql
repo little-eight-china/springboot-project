@@ -108,7 +108,6 @@ CREATE TABLE `user_order` (
   `user_id` bigint(20) DEFAULT NULL,
   `order_id` bigint(20) DEFAULT NULL,
   `goods_id` bigint(20) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `u_uid_gid` (`user_id`,`goods_id`) USING BTREE
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
