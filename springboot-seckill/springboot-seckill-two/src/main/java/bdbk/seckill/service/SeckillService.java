@@ -11,10 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 public class SeckillService {
 	
 	@Autowired
-	GoodsService goodsService;
+	private GoodsService goodsService;
 	
 	@Autowired
-	OrderService orderService;
+	private OrderService orderService;
 
 	@Transactional
 	public OrderInfo seckill(SeckillUser user, GoodsVo goods) {

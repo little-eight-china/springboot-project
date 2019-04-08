@@ -26,16 +26,16 @@ import java.util.concurrent.TimeUnit;
 public class GoodsController {
 
     @Autowired
-    GoodsService goodsService;
+    private GoodsService goodsService;
 
     @Autowired
     private RedisUtil redisUtil;
 
     @Autowired
-    ApplicationContext applicationContext;
+    private ApplicationContext applicationContext;
 
     @Autowired
-    ThymeleafViewResolver thymeleafViewResolver;
+    private ThymeleafViewResolver thymeleafViewResolver;
 
     /**
      *  跳转商品列表，页面取缓存

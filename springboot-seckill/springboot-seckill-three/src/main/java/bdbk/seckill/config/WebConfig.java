@@ -12,7 +12,7 @@ import java.util.List;
 public class WebConfig extends WebMvcConfigurerAdapter {
 
 	@Autowired
-	UserArgumentResolver userArgumentResolver;
+	private UserArgumentResolver userArgumentResolver;
 
 	@Override
 	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {

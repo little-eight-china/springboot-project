@@ -28,14 +28,14 @@ import javax.servlet.http.HttpServletResponse;
 public class HtmController {
 
     @Autowired
-    GoodsService goodsService;
+    private GoodsService goodsService;
 
 
     @Autowired
-    OrderService orderService;
+    private OrderService orderService;
 
     @Autowired
-    SeckillService seckillService;
+    private SeckillService seckillService;
 
     /**
      *  商品详情静态化

@@ -16,7 +16,7 @@ import java.util.List;
 public class GoodsController {
 
     @Autowired
-    GoodsService goodsService;
+    private GoodsService goodsService;
 
     @RequestMapping("/list")
     public String list(Model model, SeckillUser user) {

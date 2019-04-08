@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * 拦截器，判断token是否为null
+ * 给controller提供自定义形参SeckillUser
  */
 @Service
 public class UserArgumentResolver implements HandlerMethodArgumentResolver {

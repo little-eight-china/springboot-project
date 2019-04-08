@@ -15,18 +15,18 @@ import java.util.Date;
 public class OrderService {
 	
 	@Autowired
-    OrderDao orderDao;
+    private OrderDao orderDao;
 
 	public UserOrder getUserOrderByUserIdGoodsId(long userId, long goodsId) {
 		return orderDao.getUserOrderByUserIdGoodsId(userId, goodsId);
 	}
 
-	public OrderInfo getOrderInfoByUserIdGoodsId(long userId, long goodsId) {
+	OrderInfo getOrderInfoByUserIdGoodsId(long userId, long goodsId) {
 		return orderDao.getOrderInfoByUserIdGoodsId(userId, goodsId);
 	}
 
 	@Transactional
-	public OrderInfo createOrder(SeckillUser user, GoodsVo goods) {
+	OrderInfo createOrder(SeckillUser user, GoodsVo goods) {
 		OrderInfo orderInfo = new OrderInfo();
 		orderInfo.setCreateDate(new Date());
 		orderInfo.setDeliveryAddrId(0L);

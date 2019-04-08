@@ -23,13 +23,13 @@ public class SeckillController {
 	SeckillUserService userService;
 
 	@Autowired
-	GoodsService goodsService;
+	private GoodsService goodsService;
 
 	@Autowired
-	OrderService orderService;
+	private OrderService orderService;
 
 	@Autowired
-	SeckillService seckillService;
+	private SeckillService seckillService;
 	/**
 	 * 开始秒杀
 	 */

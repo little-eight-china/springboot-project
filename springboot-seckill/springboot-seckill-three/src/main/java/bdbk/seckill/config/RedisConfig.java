@@ -38,21 +38,4 @@ public class RedisConfig {
         template.afterPropertiesSet();
         return template;
     }
-
-    /**
-     * RedisTemplate序列化配置
-     *
-     * @return RedisTemplate
-     */
-//    @Bean
-//    public RedisTemplate<String, SeckillUser> priceDistributorTemplate(final RedisConnectionFactory redisConnectionFactory) {
-//        RedisTemplate<String, SeckillUser> template = new RedisTemplate<>();
-//        template.setKeySerializer(new StringRedisSerializer());
-//        template.setHashKeySerializer(new StringRedisSerializer());
-//        template.setHashValueSerializer(new StringRedisSerializer());
-//        template.setConnectionFactory(redisConnectionFactory);
-//        template.afterPropertiesSet();
-//        return template;
-//    }
-
 }

@@ -18,18 +18,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/seckill")
 public class SeckillController {
+	@Autowired
+    private GoodsService goodsService;
 
 	@Autowired
-    SeckillUserService userService;
+	private OrderService orderService;
 
 	@Autowired
-    GoodsService goodsService;
-
-	@Autowired
-	OrderService orderService;
-
-	@Autowired
-	SeckillService seckillService;
+	private SeckillService seckillService;
 	/**
 	 * 开始秒杀
 	 */
