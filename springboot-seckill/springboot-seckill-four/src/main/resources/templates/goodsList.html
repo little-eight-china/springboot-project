@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>商品列表</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!-- jquery -->
+    <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+    <!-- bootstrap -->
+    <link rel="stylesheet" type="text/css" th:href="@{/bootstrap/css/bootstrap.min.css}" />
+    <!--商品列表css-->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/goodsList.css}"/>
+    <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+    <!-- jquery-validator -->
+    <script type="text/javascript" th:src="@{/jquery-validation/jquery.validate.min.js}"></script>
+    <script type="text/javascript" th:src="@{/jquery-validation/localization/messages_zh.min.js}"></script>
+    <!-- layer -->
+    <script type="text/javascript" th:src="@{/layer/layer.js}"></script>
+    <!-- md5.js -->
+    <script type="text/javascript" th:src="@{/js/md5.min.js}"></script>
+</head>
+<body>
+    <div class="main">
+        <div class="title"><h2>秒杀商品列表</h2></div>
+        <div class="middle">
+            <div class="middle_info" th:each="goods,goodsStat : ${goodsList}">
+                <h4 th:text="${goods.name}"></h4>
+                <img th:src="@{${goods.img}}" width="250"/>
+                <br/><br/>
+                <div class="middle_info_seckill_price">
+                    <p th:text="${goods.title}"></p>
+                    <p>
+                        <span class="new_price" th:text="${goods.seckillPrice}+'元  '"></span>
+                        <del><span class="old_price" th:text="${goods.goodsPrice}+'元'"></span></del>
+                    </p>
+                    <!--这是不静态化-->
+                    <a th:href="'/goods/detail/'+${goods.id}">
+                        <button class="btn btn-default" type="submit">进入详情页(这是不静态化页面)</button>
+                    </a>
+                    <!--这是静态化-->
+                    <a th:href="'/htm/goodsDetail.htm?goodsId='+${goods.id}">
+                        <button class="btn btn-default" type="submit">进入详情页(这是静态化页面)</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

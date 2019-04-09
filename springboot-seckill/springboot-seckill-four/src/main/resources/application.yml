@@ -1,0 +1,59 @@
+
+spring:
+  #thymeleaf
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    cache: false
+    enabled: true
+    encoding: UTF-8
+    mode: HTML5
+    servlet:
+      content-type: text/html
+  #druid 详细配置请看 https://github.com/alibaba/druid/tree/master/druid-spring-boot-starter
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/seckill?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: root
+    # driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      filters: stat
+      maxActive: 2
+      initialSize: 1
+      maxWait: 60000
+      minIdle: 1
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: select 'x'
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxOpenPreparedStatements: 20
+  # 热部署
+  devtools:
+    restart:
+      enabled: true
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password:
+  #  消息件
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: admin
+    password: admin
+# mybatis
+mybatis:
+  type-aliases-package: bdbk.seckill.domain
+  configuration:
+    map-underscore-to-camel-case: true
+    default-fetch-size: 100
+    default-statement-timeout: 3000
+  mapperLocations: classpath:bdbk/seckill/dao/*.xml
+server:
+  port: 8083
+
