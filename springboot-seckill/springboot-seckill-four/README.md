@@ -25,5 +25,4 @@
 * 基础安装知识
 > https://little8.top/2018/08/09/springboot%E6%95%B4%E5%90%88RabbitMQ%EF%BC%88windows%E7%8E%AF%E5%A2%83%EF%BC%89/
  
-
-
+* 居然要手动添加消息名称。。。

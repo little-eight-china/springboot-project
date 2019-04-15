@@ -13,6 +13,9 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * 消息消费类
+ */
 @Service
 public class MQReceiver {
 

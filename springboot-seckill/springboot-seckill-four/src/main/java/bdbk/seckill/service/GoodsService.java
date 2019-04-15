@@ -23,9 +23,9 @@ public class GoodsService {
 	}
 
 	void reduceStock(GoodsVo goods) {
-		SeckillGoods g = new SeckillGoods();
-		g.setGoodsId(goods.getId());
-		goodsDao.reduceStock(g);
+		SeckillGoods seckillGoods = new SeckillGoods();
+		seckillGoods.setGoodsId(goods.getId());
+		goodsDao.reduceStock(seckillGoods);
 	}
 	
 	

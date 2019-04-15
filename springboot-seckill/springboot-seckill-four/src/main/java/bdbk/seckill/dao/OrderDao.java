@@ -2,6 +2,7 @@ package bdbk.seckill.dao;
 
 import bdbk.seckill.domain.OrderInfo;
 import bdbk.seckill.domain.UserOrder;
+import org.apache.ibatis.annotations.*;
 
 @Mapper
 public interface OrderDao {

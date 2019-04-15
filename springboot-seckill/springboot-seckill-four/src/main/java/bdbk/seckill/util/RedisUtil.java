@@ -43,6 +43,8 @@ public class RedisUtil {
         public long getExpire(String key) {
             return redisTemplate.getExpire(key, TimeUnit.SECONDS);
         }
+
+
         /**
          * 判断key是否存在
          * @param key 键
@@ -115,4 +117,17 @@ public class RedisUtil {
                 return false;
             }
         }
+
+    /**
+     * 递减1操作
+     */
+    public Long decr(String key){
+        try {
+            return redisTemplate.opsForValue().increment(key, -1);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0L;
+        }
+
+    }
 }

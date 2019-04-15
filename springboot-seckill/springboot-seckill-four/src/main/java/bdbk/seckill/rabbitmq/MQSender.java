@@ -7,6 +7,9 @@ import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * 消息发送类
+ */
 @Service
 public class MQSender {
 
