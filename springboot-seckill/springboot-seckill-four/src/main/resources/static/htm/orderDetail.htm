@@ -74,7 +74,11 @@ function getOrderDetail(){
             if(data.code === 0){
                 render(data.data);
             }else{
-                layer.msg(data.msg);
+                layer.msg('不好意思，'+data.msg, {
+                    //2s后自动关闭
+                    time: 2000,
+                    btn: ['知道了']
+                });
             }
         },
         error:function(){

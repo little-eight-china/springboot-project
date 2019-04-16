@@ -60,7 +60,7 @@ public class HtmController  implements InitializingBean {
             return;
         }
         for(GoodsVo goods : goodsList) {
-            redisUtil.set("goodsStock_"+goods.getId(), goods.getStock());
+            redisUtil.set("goodsStock_gid:"+goods.getId(), goods.getSeckillStock());
             localOverMap.put(goods.getId(), false);
         }
     }

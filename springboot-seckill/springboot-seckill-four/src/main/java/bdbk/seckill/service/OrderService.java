@@ -23,25 +23,25 @@ public class OrderService {
 
 	public UserOrder getUserOrderByUserIdGoodsId(long userId, long goodsId) {
 		// 先从缓存取，取不到再从数据库拿
-		UserOrder order = (UserOrder) redisUtil.get("uo_ugid:" + userId + "_" + goodsId);
+		UserOrder order = (UserOrder) redisUtil.get("userOrder_ugid:" + userId + "_" + goodsId);
 		if (order != null){
 			return order;
 		}
 		order = orderDao.getUserOrderByUserIdGoodsId(userId, goodsId);
 		// 存入缓存
-		redisUtil.set("uo_ugid:" + userId + "_" + goodsId, order);
+		redisUtil.set("userOrder_ugid:" + userId + "_" + goodsId, order);
 		return order;
 	}
 
 	OrderInfo getOrderInfoByUserIdGoodsId(long userId, long goodsId) {
 		// 先从缓存取，取不到再从数据库拿
-		OrderInfo order = (OrderInfo) redisUtil.get("oi_ugid:" + userId + "_" + goodsId);
+		OrderInfo order = (OrderInfo) redisUtil.get("orderInfo_ugid:" + userId + "_" + goodsId);
 		if (order != null){
 			return order;
 		}
 		order = orderDao.getOrderInfoByUserIdGoodsId(userId, goodsId);
 		// 存入缓存
-		redisUtil.set("oi_ugid:" + userId + "_" + goodsId, order);
+		redisUtil.set("orderInfo_ugid:" + userId + "_" + goodsId, order);
 		return order;
 	}
 
@@ -70,8 +70,8 @@ public class OrderService {
 		userOrder.setUserId(user.getId());
 		orderDao.insertUserOrder(userOrder);
 		// 存入缓存
-		redisUtil.set("uo_ugid:" + user.getId() + "_" + goods.getId(), userOrder);
-		redisUtil.set("oi_ugid:" + user.getId() + "_" + goods.getId(), userOrder);
+		redisUtil.set("userOrder_ugid:" + user.getId() + "_" + goods.getId(), userOrder);
+		redisUtil.set("orderInfo_ugid:" + user.getId() + "_" + goods.getId(), userOrder);
 		return orderInfo;
 	}
 	

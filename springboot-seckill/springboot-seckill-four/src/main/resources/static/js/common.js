@@ -22,5 +22,8 @@ Date.prototype.format = function (format) {
             format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? n : ("00" + n).substr(("" + n).length));  
     }  
     return format;  
-};  
-
+};
+// 等待条
+function g_showLoading(){
+    return layer.msg('处理中...', {icon: 16,shade: [0.5, '#f5f5f5'],scrollbar: false,offset: '0px', time:100000});
+}

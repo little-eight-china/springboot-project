@@ -52,7 +52,7 @@
                 </div>
                 <div class="info_feet2">
                     <span>库存数量：</span>
-                    <span id="stock"></span>
+                    <span id="seckillStock"></span>
                 </div>
                 <div>
                     <button class="btn btn-primary btn-block" type="button" id="seckillButton"onclick="startSeckill()">立即秒杀</button>
@@ -105,7 +105,7 @@ function render(detail){
     $("#goodsId").val(goods.id);
     $("#goodsPrice").text(goods.goodsPrice+' 元');
     $("#seckillPrice").text(goods.seckillPrice+' 元');
-    $("#stock").text(goods.stock+' 个');
+    $("#seckillStock").text(goods.seckillStock+' 个');
     countDown();
 }
 // 倒计时
@@ -136,6 +136,7 @@ function countDown(){
 }
 // 点击秒杀
 function startSeckill(){
+    g_showLoading();
     $.ajax({
         url:"/htm/startSeckill",
         type:"POST",
@@ -147,7 +148,11 @@ function startSeckill(){
                 // 看秒杀结果
                 getSeckillResult($("#goodsId").val());
             }else{
-                layer.msg(data.msg);
+                layer.msg('不好意思，'+data.msg, {
+                    //2s后自动关闭
+                    time: 2000,
+                    btn: ['知道了']
+                });
             }
         },
         error:function(){
@@ -158,9 +163,8 @@ function startSeckill(){
 
 // 秒杀结果
 function getSeckillResult(goodsId){
-    g_showLoading();
     $.ajax({
-        url:"htm/seckill/result",
+        url:"/htm/seckill/result",
         type:"GET",
         data:{
             goodsId:$("#goodsId").val()
@@ -178,14 +182,18 @@ function getSeckillResult(goodsId){
                 }else{
                     layer.confirm("恭喜你，秒杀成功！查看订单？", {btn:["确定","取消"]},
                         function(){
-                            window.location.href="/htm/order_detail.htm?orderId="+result;
+                            window.location.href="/htm/orderDetail.htm?orderId="+result;
                         },
                         function(){
                             layer.closeAll();
                         });
                 }
             }else{
-                layer.msg(data.msg);
+                layer.msg('不好意思，'+data.msg, {
+                        //2s后自动关闭
+                         time: 2000,
+                         btn: ['知道了']
+                });
             }
         },
         error:function(){

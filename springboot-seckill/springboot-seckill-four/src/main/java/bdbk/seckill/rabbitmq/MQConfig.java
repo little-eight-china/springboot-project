@@ -26,7 +26,15 @@ public class MQConfig {
 	public Queue queue() {
 		return new Queue(QUEUE, true);
 	}
-	
+
+	/**
+	 * 秒杀queue
+	 * */
+	@Bean
+	public Queue seckillQueue() {
+		return new Queue(SECKILL_QUEUE, true);
+	}
+
 	/**
 	 * Topic模式 交换机Exchange
 	 * */
