@@ -66,4 +66,9 @@ public class SeckillUserService {
 		cookie.setPath("/");
 		response.addCookie(cookie);
 	}
+
+
+	public SeckillUser one(){
+		return seckillUserDao.getByMobile("18181818181");
+	}
 }

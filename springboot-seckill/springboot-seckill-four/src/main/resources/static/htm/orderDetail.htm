@@ -65,10 +65,9 @@ $(function(){
 });
 // 获取订单详情
 function getOrderDetail(){
-    var userId = g_getQueryString("userId");
-    var goodsId = g_getQueryString("goodsId");
+    var orderId = g_getQueryString("orderId");
     $.ajax({
-        url:"/htm/orderDetail/"+userId+ "/"+goodsId,
+        url:"/htm/orderDetail/"+orderId,
         type:"GET",
         success:function(data){
             if(data.code === 0){
@@ -82,7 +81,6 @@ function getOrderDetail(){
             }
         },
         error:function(){
-            debugger
             layer.msg("客户端请求有误");
         }
     });

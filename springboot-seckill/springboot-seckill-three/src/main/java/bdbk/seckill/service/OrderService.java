@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.UUID;
 
 @Service
 public class OrderService {
@@ -63,7 +64,9 @@ public class OrderService {
 		orderInfo.setOrderChannel(1);
 		orderInfo.setStatus(0);
 		orderInfo.setUserId(user.getId());
-		long orderId = orderDao.insertOrderInfo(orderInfo);
+		String orderId = UUID.randomUUID().toString();
+		orderInfo.setId(orderId);
+		orderDao.insertOrderInfo(orderInfo);
 		UserOrder userOrder = new UserOrder();
 		userOrder.setGoodsId(goods.getId());
 		userOrder.setOrderId(orderId);

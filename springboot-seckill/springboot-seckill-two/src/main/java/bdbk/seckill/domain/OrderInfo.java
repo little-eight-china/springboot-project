@@ -3,7 +3,7 @@ package bdbk.seckill.domain;
 import java.util.Date;
 
 public class OrderInfo {
-	private Long id;
+	private String id;
 	private Long userId;
 	private Long goodsId;
 	private Long  deliveryAddrId;
@@ -16,10 +16,10 @@ public class OrderInfo {
 	private Integer status;
 	private Date createDate;
 	private Date payDate;
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public Long getUserId() {

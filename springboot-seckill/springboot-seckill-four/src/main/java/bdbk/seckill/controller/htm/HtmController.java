@@ -9,6 +9,7 @@ import bdbk.seckill.rabbitmq.SeckillMessage;
 import bdbk.seckill.service.GoodsService;
 import bdbk.seckill.service.OrderService;
 import bdbk.seckill.service.SeckillService;
+import bdbk.seckill.service.SeckillUserService;
 import bdbk.seckill.util.RedisUtil;
 import bdbk.seckill.vo.GoodsDetailVo;
 import bdbk.seckill.vo.GoodsVo;
@@ -40,6 +41,9 @@ public class HtmController  implements InitializingBean {
 
     @Autowired
     private SeckillService seckillService;
+
+    @Autowired
+    private SeckillUserService seckillUserService;
 
     @Autowired
     private RedisUtil redisUtil;
@@ -150,6 +154,16 @@ public class HtmController  implements InitializingBean {
     }
 
 
+
+    /**
+     *  订单详情静态化
+     */
+    @RequestMapping(value="/orderDetail/{orderId}")
+    @ResponseBody
+    public ResponseDataVo<OrderInfo> orderDetail1(@PathVariable("orderId")String orderId) {
+        OrderInfo orderInfo = seckillService.getOrderInfoById(orderId);
+        return ResponseDataVo.success(orderInfo);
+    }
     /**
      * orderId：成功
      * -1：秒杀失败
@@ -157,13 +171,26 @@ public class HtmController  implements InitializingBean {
      * */
     @RequestMapping(value="/seckill/result", method=RequestMethod.GET)
     @ResponseBody
-    public ResponseDataVo<Long> miaoshaResult(Model model,SeckillUser user,
+    public ResponseDataVo<String> miaoshaResult(Model model,SeckillUser user,
                                       @RequestParam("goodsId")long goodsId) {
         model.addAttribute("user", user);
         if(user == null) {
             return ResponseDataVo.error(CodeMsg.SESSION_ERROR.getMsg());
         }
-        long result = seckillService.getSeckillResult(user.getId(), goodsId);
+        String result = seckillService.getSeckillResult(user.getId(), goodsId);
         return ResponseDataVo.success(result);
+    }
+
+    /**
+     * orderId：成功
+     * -1：秒杀失败
+     * 0： 排队中
+     * */
+    @RequestMapping(value="/test", method=RequestMethod.GET)
+    public void test(){
+        //减库存 下订单 写入秒杀订单
+        SeckillUser user = seckillUserService.one();
+        GoodsVo goods = goodsService.getGoodsVoByGoodsId(1);
+        seckillService.seckill(user, goods);
     }
 }

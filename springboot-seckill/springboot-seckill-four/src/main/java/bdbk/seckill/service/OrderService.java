@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.UUID;
 
 @Service
 public class OrderService {
@@ -45,6 +46,19 @@ public class OrderService {
 		return order;
 	}
 
+
+	OrderInfo getOrderInfoById(String orderId) {
+		// 先从缓存取，取不到再从数据库拿
+		OrderInfo order = (OrderInfo) redisUtil.get("orderInfo_id:" + orderId);
+		if (order != null){
+			return order;
+		}
+		order = orderDao.getOrderInfoByOrderId(orderId);
+		// 存入缓存
+		redisUtil.set("orderInfo_id:" + orderId, order);
+		return order;
+	}
+
 	/**
 	 * 1、创建订单
  	 * 2、建立唯一索引防止超卖  ALTER TABLE user_order ADD UNIQUE u_uid_gid(user_id,goods_id)
@@ -63,7 +77,9 @@ public class OrderService {
 		orderInfo.setOrderChannel(1);
 		orderInfo.setStatus(0);
 		orderInfo.setUserId(user.getId());
-		long orderId = orderDao.insertOrderInfo(orderInfo);
+		String orderId = UUID.randomUUID().toString();
+		orderInfo.setId(orderId);
+		orderDao.insertOrderInfo(orderInfo);
 		UserOrder userOrder = new UserOrder();
 		userOrder.setGoodsId(goods.getId());
 		userOrder.setOrderId(orderId);

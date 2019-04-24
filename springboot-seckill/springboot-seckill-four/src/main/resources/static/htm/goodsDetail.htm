@@ -172,9 +172,9 @@ function getSeckillResult(goodsId){
         success:function(data){
             if(data.code == 0){
                 var result = data.data;
-                if(result < 0){
+                if(result === 'error'){
                     layer.msg("对不起，秒杀失败");
-                }else if(result == 0){
+                }else if(result === 'doing'){
                     setTimeout(function(){
                         //继续轮询
                         getSeckillResult(goodsId);

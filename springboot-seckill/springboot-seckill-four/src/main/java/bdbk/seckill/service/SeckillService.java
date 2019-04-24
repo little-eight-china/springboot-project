@@ -32,10 +32,13 @@ public class SeckillService {
 		return orderService.getOrderInfoByUserIdGoodsId(userId, goodsId);
 	}
 
+	public OrderInfo getOrderInfoById(String OrderId) {
+		return orderService.getOrderInfoById(OrderId);
+	}
 	/**
 	 * 获取秒杀结果
 	 */
-	public long getSeckillResult(Long userId, long goodsId) {
+	public String getSeckillResult(Long userId, long goodsId) {
 		UserOrder order = orderService.getUserOrderByUserIdGoodsId(userId, goodsId);
 		//秒杀成功
 		if(order != null) {
@@ -43,9 +46,9 @@ public class SeckillService {
 		}else {
 			boolean isOver = redisUtil.hasKey("gsr_gid:"+goodsId);
 			if(isOver) {
-				return -1;
+				return "error";
 			}else {
-				return 0;
+				return "doing";
 			}
 		}
 	}

@@ -41,7 +41,7 @@ INSERT INTO `goods` VALUES ('2', '华为 Mate 10', 'Huawei/华为 Mate 10 6G+128
 -- ----------------------------
 DROP TABLE IF EXISTS `order_info`;
 CREATE TABLE `order_info` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `id` varchar(64) NOT NULL AUTO_INCREMENT,
   `user_id` bigint(20) DEFAULT NULL,
   `goods_id` bigint(20) DEFAULT NULL,
   `delivery_addr_id` bigint(20) DEFAULT NULL,
@@ -108,7 +108,7 @@ DROP TABLE IF EXISTS `user_order`;
 CREATE TABLE `user_order` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `user_id` bigint(20) DEFAULT NULL,
-  `order_id` bigint(20) DEFAULT NULL,
+  `order_id` varchar(64) DEFAULT NULL,
   `goods_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;

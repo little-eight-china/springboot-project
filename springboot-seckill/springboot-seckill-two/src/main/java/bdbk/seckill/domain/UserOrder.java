@@ -3,7 +3,7 @@ package bdbk.seckill.domain;
 public class UserOrder {
 	private Long id;
 	private Long userId;
-	private Long  orderId;
+	private String orderId;
 	private Long goodsId;
 	public Long getId() {
 		return id;
@@ -17,10 +17,10 @@ public class UserOrder {
 	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
-	public Long getOrderId() {
+	public String getOrderId() {
 		return orderId;
 	}
-	public void setOrderId(Long orderId) {
+	public void setOrderId(String orderId) {
 		this.orderId = orderId;
 	}
 	public Long getGoodsId() {
