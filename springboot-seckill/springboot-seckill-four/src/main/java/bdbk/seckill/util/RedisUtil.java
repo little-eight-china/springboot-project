@@ -130,4 +130,17 @@ public class RedisUtil {
         }
 
     }
+
+    /**
+     * 递增1操作
+     */
+    public Long inc(String key){
+        try {
+            return redisTemplate.opsForValue().increment(key, 1);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0L;
+        }
+
+    }
 }

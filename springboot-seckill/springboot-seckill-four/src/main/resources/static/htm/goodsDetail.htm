@@ -55,7 +55,9 @@
                     <span id="seckillStock"></span>
                 </div>
                 <div>
-                    <button class="btn btn-primary btn-block" type="button" id="seckillButton"onclick="startSeckill()">立即秒杀</button>
+                    <img id="verifyCodeImg" width="80" height="32" onclick="refreshVerifyCode()"/>
+                    <input id="verifyCode" class="form-control" placeholder="请输入验证码结果"/>
+                    <button class="btn btn-primary btn-block" type="button" id="seckillButton"onclick="getPath()">立即秒杀</button>
                     <input type="hidden" name="goodsId"  id="goodsId" />
                 </div>
             </div>
@@ -66,11 +68,15 @@
 
 $(function(){
     getDetail();
+    setTimeout(function(){
+        refreshVerifyCode();
+    },1000)
 });
 
 // 获取商品详情
 function getDetail(){
 	var goodsId = g_getQueryString("goodsId");
+    var verifyCode = $("#verifyCode").val();
 	$.ajax({
 		url:"/htm/detail/"+goodsId,
 		type:"GET",
@@ -135,10 +141,38 @@ function countDown(){
 	}
 }
 // 点击秒杀
-function startSeckill(){
+function getPath(){
+    var goodsId = $("#goodsId").val();
+    var verifyCode = $("#verifyCode").val();
     g_showLoading();
     $.ajax({
-        url:"/htm/startSeckill",
+        url:"/htm/path",
+        type:"GET",
+        data:{
+            goodsId:goodsId,
+            verifyCode:verifyCode
+        },
+        success:function(data){
+            if(data.code == 0){
+                var path = data.data;
+                startSeckill(path);
+            }else{
+                refreshVerifyCode();
+                layer.msg(data.msg);
+            }
+        },
+        error:function(){
+            refreshVerifyCode();
+            layer.msg("客户端请求有误");
+        }
+    });
+}
+
+// 开始访问秒杀接口
+function startSeckill(path){
+    g_showLoading();
+    $.ajax({
+        url:"/htm/startSeckill/"+path,
         type:"POST",
         data:{
             goodsId:$("#goodsId").val()
@@ -200,6 +234,10 @@ function getSeckillResult(goodsId){
             layer.msg("客户端请求有误");
         }
     });
+}
+
+function refreshVerifyCode(){
+    $("#verifyCodeImg").attr("src", "/htm/verifyCode?goodsId="+$("#goodsId").val()+"&timestamp="+new Date().getTime());
 }
 </script>
 </html>

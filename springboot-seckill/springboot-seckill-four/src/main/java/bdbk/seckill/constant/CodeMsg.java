@@ -7,6 +7,9 @@ public enum  CodeMsg {
 	ERROR(500002,"请求失败"),
 	SERVER_ERROR(500100,"服务端异常"),
 	BIND_ERROR(500100,"参数校验异常：%s"),
+	VERIFYCODE_ERROR(500101,"验证码错误，请重新输入！"),
+	REQUEST_ILLEGAL(500102,"请求非法"),
+	ACCESS_LIMIT_REACHED(500104,"访问太频繁！"),
 	//登录模块 5002XX
 	SESSION_ERROR(500210,"Session不存在或者已经失效"),
 	PASSWORD_EMPTY(500211,"登录密码不能为空"),
@@ -16,7 +19,8 @@ public enum  CodeMsg {
 	PASSWORD_ERROR(500215, "密码错误"),
 	//秒杀模块 5005XX
 	SECKILL_OVER(500500, "商品已经秒杀完毕"),
-	REPEATE_SECKILL(500501, "不能重复秒杀");
+	REPEATE_SECKILL(500501, "不能重复秒杀"),
+	SECKILL_SECKILL(500502, "秒杀失败");
 
 	private int code;
 	private String msg;

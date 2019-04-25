@@ -1,5 +1,6 @@
 package bdbk.seckill.controller.htm;
 
+import bdbk.seckill.access.AccessLimit;
 import bdbk.seckill.constant.CodeMsg;
 import bdbk.seckill.domain.OrderInfo;
 import bdbk.seckill.domain.SeckillUser;
@@ -20,6 +21,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.awt.image.BufferedImage;
+import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.List;
 
@@ -107,23 +113,51 @@ public class HtmController  implements InitializingBean {
     }
 
     /**
+     * 获取path
+     */
+    @AccessLimit(seconds=5, maxCount=5, needLogin=true)
+    @RequestMapping(value="/path", method=RequestMethod.GET)
+    @ResponseBody
+    public ResponseDataVo<String> getPath(SeckillUser user,
+                                         @RequestParam("goodsId")long goodsId,
+                                         @RequestParam(value="verifyCode", defaultValue="0")int verifyCode
+    ) {
+        if(user == null) {
+            return ResponseDataVo.error(CodeMsg.SESSION_ERROR.getMsg());
+        }
+        boolean check = seckillService.checkVerifyCode(user, goodsId, verifyCode);
+        if(!check) {
+            return ResponseDataVo.error(CodeMsg.VERIFYCODE_ERROR.getMsg());
+        }
+        String path = seckillService.addPath(user, goodsId);
+        return ResponseDataVo.success(path);
+    }
+    
+    /**
      *  秒杀逻辑
      */
-    @RequestMapping(value="/startSeckill", method= RequestMethod.POST)
+    @RequestMapping(value="/startSeckill/{path}", method= RequestMethod.POST)
     @ResponseBody
     public ResponseDataVo<Integer> miaosha(Model model, SeckillUser user,
-                                             @RequestParam("goodsId")long goodsId) {
+                                             @RequestParam("goodsId")long goodsId,
+                                           @PathVariable("path") String path) {
         model.addAttribute("user", user);
         if(user == null) {
             return ResponseDataVo.error(CodeMsg.SESSION_ERROR.getMsg());
         }
-        //内存标记，减少redis访问
+
+        // 验证path
+        boolean check = seckillService.checkPath(user, goodsId, path);
+        if(!check){
+            return ResponseDataVo.error(CodeMsg.REQUEST_ILLEGAL.getMsg());
+        }
+        // 内存标记，减少redis访问
         boolean over = localOverMap.get(goodsId);
         if(over) {
             return ResponseDataVo.error(CodeMsg.SECKILL_OVER.getMsg());
         }
 
-        //预减库存
+        // 预减库存
         long stock = redisUtil.decr("goodsStock_gid:"+goodsId);
         if(stock < 0) {
             localOverMap.put(goodsId, true);
@@ -146,18 +180,6 @@ public class HtmController  implements InitializingBean {
     /**
      *  订单详情静态化
      */
-    @RequestMapping(value="/orderDetail/{userId}/{goodsId}")
-    @ResponseBody
-    public ResponseDataVo<OrderInfo> orderDetail(SeckillUser user, @PathVariable("userId")long userId, @PathVariable("goodsId")long goodsId) {
-        OrderInfo orderInfo = seckillService.getOrderInfoByUserIdGoodsId(userId, goodsId);
-        return ResponseDataVo.success(orderInfo);
-    }
-
-
-
-    /**
-     *  订单详情静态化
-     */
     @RequestMapping(value="/orderDetail/{orderId}")
     @ResponseBody
     public ResponseDataVo<OrderInfo> orderDetail1(@PathVariable("orderId")String orderId) {
@@ -171,7 +193,7 @@ public class HtmController  implements InitializingBean {
      * */
     @RequestMapping(value="/seckill/result", method=RequestMethod.GET)
     @ResponseBody
-    public ResponseDataVo<String> miaoshaResult(Model model,SeckillUser user,
+    public ResponseDataVo<String> miaoshaResponseDataVo(Model model,SeckillUser user,
                                       @RequestParam("goodsId")long goodsId) {
         model.addAttribute("user", user);
         if(user == null) {
@@ -192,5 +214,28 @@ public class HtmController  implements InitializingBean {
         SeckillUser user = seckillUserService.one();
         GoodsVo goods = goodsService.getGoodsVoByGoodsId(1);
         seckillService.seckill(user, goods);
+    }
+
+    /**
+     * 生成验证码
+     */
+    @RequestMapping(value="/verifyCode", method=RequestMethod.GET)
+    @ResponseBody
+    public ResponseDataVo<String> getMiaoshaVerifyCod(HttpServletResponse response, SeckillUser user,
+                                              @RequestParam("goodsId")long goodsId) {
+        if(user == null) {
+            return ResponseDataVo.error(CodeMsg.SESSION_ERROR.getMsg());
+        }
+        try {
+            BufferedImage image  = seckillService.getVerifyCode(user, goodsId);
+            OutputStream out = response.getOutputStream();
+            ImageIO.write(image, "JPEG", out);
+            out.flush();
+            out.close();
+            return null;
+        }catch(Exception e) {
+            e.printStackTrace();
+            return ResponseDataVo.error(CodeMsg.SECKILL_SECKILL.getMsg());
+        }
     }
 }
